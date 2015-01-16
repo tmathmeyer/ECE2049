@@ -31,15 +31,15 @@ struct rets fnone() {
     return rets;
 }
 void mk_hist() {
-    int ctr = 0;
-    for(;ctr<1000;ctr++) {
+    int ctr = 1000;
+    for(;ctr --> 0;) {
         HISTOGRAM[(VALUES[CTR]+100)/20]++;
     }
 }
 int main(){
-    int gt_0, lt_0, ctr=0;
+    int gt_0, lt_0, ctr=1000;
     srand(time(0));
-    for(;ctr<1000;ctr++){
+    for(;ctr --> 0;){
         histogram=100-(rand()%200);
     }
 
