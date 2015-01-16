@@ -1,0 +1,103 @@
+PROBLEM 1:
+ a) 240 = 0x11110000
+    4 times (bitshift's the ones off the top each time)
+
+    i) at the end of the first iteration of the loop, the values are:
+         kk: 224
+         mm: (64000+240)/240 = 267
+         inVal: 32000
+       at the end of the second iteration of the loop, the values are:
+         kk: 0
+         mm: 63
+         inVal: 4000
+    ii) the values are
+          n-2: 0xFE
+          penultimate (n-1): 0xFF
+          final: 0x00
+ b) C code:
+````
+char VALUES[1000] // why use ints when this is fine?
+char HISTOGRAM[10] = {0};
+struct rets {
+    int a, b;
+};
+struct rets fnone() {
+    struct rets res = {0, 0};
+    int ctr = 0;
+    for(;ctr<1000;ctr++) {
+        if (rets>0) res.a++;
+        if (rets<0) res.b++;
+    }
+    return rets;
+}
+void mk_hist() {
+ // ehh ill do it later
+}
+int main(){
+    int gt_0, lt_0, ctr=0;
+    srand(time(0));
+    for(;ctr<1000;ctr++){
+        histogram=100-(rand()%200);
+    }
+
+    struct rets val = fnone();
+    gt_0 = val.a;
+    lt_0 = val.b;
+
+    mk_hist();
+}
+
+````
+ c) a cast is a note to the compiler that tells it how to treat the data for
+    specific operations, such as addition (which is of course different for
+    floating point numbers and integral ones)
+
+    values
+    A: 33792.0
+    bb: 5120
+    cc: 1501
+
+
+ d)
+        unsigned char trial = 0, tP_history[100];
+        for(;trial<100;trial++) {
+            switch(tP_history[trial] = alphaTouchPad()) {
+                case 'A': led_on(0); break;
+                case 'B': led_on(1); break;
+                case 'C': led_on(2); break;
+                case 'D': led_on(3); break;
+                case 'E': led_on(4); break;
+            }
+        }
+
+
+
+
+PROBLEM 2:
+a)  0x330 = 816
+    0x68D7 = 26839
+    0xB009 = 45065
+    0xFFFE = 65534
+
+b)  0x330 = 816
+    0x68D7 = 26839
+    0xB009 = -12297
+    0xFFFE = -32766
+
+c)  0x330 = 816
+    0x68d7 = 26839
+    0xB009 = -4088
+    0xFFFE = -2
+
+
+PROBLEM 3:
+a) it is a binary number (base 2), ie, 1101b is 13 base 10
+b) 932706 = 0b11100011101101100010
+c) 84325
+
+PROBLEM 4:
+a) -6.125 = 11000000110001000000000000000000
+b) 12.0625 = 01000001010000010000000000000000
+c) 0.4 = 00111110110011001100110011001101
+
+
