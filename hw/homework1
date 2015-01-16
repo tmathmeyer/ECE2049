@@ -31,7 +31,10 @@ struct rets fnone() {
     return rets;
 }
 void mk_hist() {
- // ehh ill do it later
+    int ctr = 0;
+    for(;ctr<1000;ctr++) {
+        HISTOGRAM[(VALUES[CTR]+100)/20]++;
+    }
 }
 int main(){
     int gt_0, lt_0, ctr=0;
@@ -48,6 +51,8 @@ int main(){
 }
 
 ````
+The range of values in histogram[6] is from 120 to 139.
+
  c) a cast is a note to the compiler that tells it how to treat the data for
     specific operations, such as addition (which is of course different for
     floating point numbers and integral ones)
