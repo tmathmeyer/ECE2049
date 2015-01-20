@@ -96,9 +96,9 @@ c)  0x330 = 816
 
 
 PROBLEM 3:
-a) it is a binary number (base 2), ie, 1101b is 13 base 10
-b) 932706 = 0b11100011101101100010
-c) 84325
+a) it is a legacy binary format in which every 4 bits correspond to a base 10 digit
+b) 932706 = 1001 0011 0010 0111 0000 0110
+c) 0001 0100 1001 0110 0101 = 14965
 
 PROBLEM 4:
 a) -6.125 = 11000000110001000000000000000000
