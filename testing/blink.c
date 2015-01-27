@@ -1,5 +1,5 @@
 #include <msp430.h>
-#include "devices.h"
+//#include "devices.h"
 
 
 int main(void) {
@@ -11,11 +11,11 @@ int main(void) {
     __disable_interrupt();          // Not using interrupts so disable them
 
 
-    configure_cap_buttons();
+    //configure_cap_buttons();
 
-    BBM buttons = get_active_buttons(0);
+    //BBM buttons = get_active_buttons(0);
 
-    configure_cap_leds();
+    //configure_cap_leds();
 
     while(1)   // forever loop
     {

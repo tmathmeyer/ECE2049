@@ -1,42 +1,17 @@
-#AUTHOR: Ted Meyer (2015)
+CC       = msp430-gcc
+MCU      = msp430f5529
+TARGET   = blink
+INC_DIR  = /home/ted/git/ECE2049/testing/include
+INCLUDES = -I $(INC_DIR)
+
+SOURCES  = blink.c
+OBJECTS  = $(SOURCES:.c=.o)
+
+CFLAGS   = $(INCLUDES) -D__$(MCU)__ -mmcu=$(MCU)  -T $(INC_DIR)/$(MCU)/memory.ld -T $(INC_DIR)/$(MCU)/peripherals.ld -Wl,--gc-sections -Wl,-Map=$(TARGET).map
 
 
-SOURCES = devices.c blink.c
-
-
-
-
-# PROJECT SPECIFIC CONFIGURATION
-TARGET  = blink#  put program name here
-MCU     = msp430f5529# put the model of the board here
-TILIB   = CTS_Layer.c CTS_HAL.c structure.c $(SOURCES)
-
-
-# SYSTEM SPECIFIC CONFIGURATION
-HEADERS = /usr/local/lib/msp430# location of header files
-CC      = msp430-gcc# compiler
-
-# FLAGS
-INCLUDES = -I $(HEADERS)
-LINKER   = -T $(HEADERS)/$(MCU)/memory.ld -T $(HEADERS)/$(MCU)/peripherals.ld
-MODEL    = -D__$(MCU)__ -mmcu=$(MCU)
-WL       = -Wl,--gc-sections -Wl,-Map=$(TARGET).map
-OBJECTS  = $(TILIB:.c=.o)
-CFLAGS   = $(INCLUDES) $(MODEL) $(LINKER) $(WL)
-
-all: build
-
-build: $(OBJECTS)
-
-.c.o:
-	@echo CC -c $<
-	@$(CC) -c $+ $(CFLAGS)
-
-build:
-	@echo CC -o $@
-	@echo $(CFLAGS)
-	@$(CC) -o $(TARGET) $+ $(CFLAGS)
+all: blink.o
+	$(CC) $(OBJECTS) -o $(TARGET).elf $(CFLAGS)
 
 clean:
-	@echo cleaning
-	rm -f *.o *.map $(TARGET)
+	rm *.o *.map
