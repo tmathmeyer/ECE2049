@@ -18,7 +18,8 @@
 //  Built with Code Composer Studio v5
 //***************************************************************************************
 
-#include <msp430f5529.h>
+//#include <msp430f5529.h>
+#include <msp430.h>
 
 int main(void) {
     WDTCTL = WDTPW | WDTHOLD;       // Stop watchdog timer
@@ -27,6 +28,7 @@ int main(void) {
     P1SEL = P1SEL & ~BIT0;          // Select P1.0 for digital IO
     P1DIR |= BIT0;          // Set P1.0 to output direction
     __disable_interrupt();          // Not using interrupts so disable them
+
 
     while(1)   // forever loop
     {
