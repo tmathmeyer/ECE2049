@@ -1,5 +1,5 @@
 #include <msp430.h>
-//#include "devices.h"
+#include "devices.h"
 
 
 int main(void) {
