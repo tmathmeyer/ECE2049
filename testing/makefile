@@ -1,16 +1,12 @@
 #AUTHOR: Ted Meyer (2015)
-
-
 SOURCES = blink.c devices.c
-
-
 
 
 # PROJECT SPECIFIC CONFIGURATION
 TARGET  = blink#  put program name here
 MCU     = msp430f5529# put the model of the board here
-TILIB   = CTS_Layer.c CTS_HAL.c structure.c
-SRCALL  = $(TILIB) $(SOURCES)
+TILIB   = CTS_Layer.c structure.c CTS_HAL.c
+SRCALL  = $(SOURCES) $(TILIB)
 
 
 # SYSTEM SPECIFIC CONFIGURATION
@@ -19,7 +15,11 @@ CC      = msp430-gcc# compiler
 
 # FLAGS
 INCLUDES = -I $(HEADERS)
-LINKER   = -T $(HEADERS)/$(MCU)/memory.ld -T $(HEADERS)/$(MCU)/peripherals.ld
+#MEMORY   = -T $(HEADERS)/$(MCU)/memory.ld
+MEMORY   = -T /home/ted/git/ECE2049/labs/space_invaders_tjmeyer/lnk_msp430f5529.cmd
+
+PERPH    = -T $(HEADERS)/$(MCU)/peripherals.ld
+LINKER   = $(MEMORY) $(PERPH)
 MODEL    = -D__$(MCU)__ -mmcu=$(MCU)
 WL       = -Wl,--gc-sections -Wl,-Map=$(TARGET).map
 OBJECTS  = $(SRCALL:.c=.o)
@@ -35,8 +35,7 @@ build: $(OBJECTS)
 
 build:
 	@echo CC -o $(TARGET) $+
-	@echo $(CFLAGS)
-	@$(CC) -o $(TARGET) $+ $(CFLAGS)
+	@$(CC) -o $(TARGET) $+ $(CFLAGS) $(WL) $(LINKER)
 
 clean:
 	@echo cleaning
