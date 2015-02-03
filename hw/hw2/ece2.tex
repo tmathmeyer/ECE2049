@@ -1,0 +1,237 @@
+\documentclass{article}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{extramarks}
+\usepackage{graphicx}
+\usepackage{lipsum}
+\usepackage{booktabs}
+\usepackage{inconsolata}
+\usepackage{listings}
+\usepackage{amssymb}
+
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in 
+\linespread{1.1}
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{}
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}}
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+\setlength\parindent{0pt}
+
+
+\newcounter{homeworkProblemCounter}
+
+\newcommand{\homeworkProblemName}{}
+
+\newcommand{\enterProblemHeader}[1]{
+	\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak
+	\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+}
+
+\newcommand{\exitProblemHeader}[1]{
+	\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+	\nobreak\extramarks{#1}{}\nobreak
+}
+
+\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]{
+	\stepcounter{homeworkProblemCounter}
+	\renewcommand{\homeworkProblemName}{#1}
+	\section*{\homeworkProblemName}
+	\enterProblemHeader{\homeworkProblemName}
+}{
+	\exitProblemHeader{\homeworkProblemName}
+}
+   
+
+\newcommand{\hmwkTitle}{Homework\ \#2}
+\newcommand{\hmwkDueDate}{Monday,\ February\ 01,\ 2015}
+\newcommand{\hmwkClass}{ECE 2049}
+\newcommand{\hmwkAuthorName}{Ted Meyer}
+
+
+\title{
+\vspace{2in}
+\textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+\normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}\\
+\vspace{3in}
+}
+
+\author{\textbf{\hmwkAuthorName}}
+\date{}
+
+
+\begin{document}
+
+\maketitle
+
+
+
+\newpage
+
+
+
+\begin{homeworkProblem}
+	\begin{table}[h]
+		\begin{tabular}{@{}llll@{}}
+			\toprule
+		
+			Label        & Address        & Little Endian & Big Endian  \\ \midrule
+			ss           & \texttt{02421} & \texttt{C0}   & \texttt{00} \\
+			ss           & \texttt{02420} & \texttt{AC}   & \texttt{00} \\
+			ss           & \texttt{0241F} & \texttt{00}   & \texttt{AC} \\
+			ss           & \texttt{0241E} & \texttt{00}   & \texttt{C0} \\
+			class{[}7{]} & \texttt{0241D} & \texttt{39}   & \texttt{39} \\
+			class{[}6{]} & \texttt{0241C} & \texttt{34}   & \texttt{34} \\
+			class{[}5{]} & \texttt{0241B} & \texttt{30}   & \texttt{30} \\
+			class{[}4{]} & \texttt{0241A} & \texttt{32}   & \texttt{32} \\
+			class{[}3{]} & \texttt{02419} & \texttt{2D}   & \texttt{2D} \\
+			class{[}2{]} & \texttt{02418} & \texttt{45}   & \texttt{45} \\
+			class{[}1{]} & \texttt{02417} & \texttt{43}   & \texttt{43} \\
+			class{[}0{]} & \texttt{02416} & \texttt{45}   & \texttt{45} \\
+			ser\_num     & \texttt{02415} & \texttt{9B}   & \texttt{F6} \\
+			ser\_num     & \texttt{02414} & \texttt{15}   & \texttt{75} \\
+			ser\_num     & \texttt{02413} & \texttt{19}   & \texttt{00} \\
+			ser\_num     & \texttt{02412} & \texttt{AC}   & \texttt{12} \\
+			ser\_num     & \texttt{02411} & \texttt{12}   & \texttt{AC} \\
+			ser\_num     & \texttt{02410} & \texttt{00}   & \texttt{19} \\
+			ser\_num     & \texttt{0240F} & \texttt{75}   & \texttt{15} \\
+			ser\_num     & \texttt{0240E} & \texttt{F6}   & \texttt{9B} \\
+			trp          & \texttt{0240D} & \texttt{00}   & \texttt{04} \\
+			trp          & \texttt{0240C} & \texttt{00}   & \texttt{00} \\
+			trp          & \texttt{0240B} & \texttt{00}   & \texttt{01} \\
+			trp          & \texttt{0240A} & \texttt{00}   & \texttt{00} \\
+			trp          & \texttt{02409} & \texttt{00}   & \texttt{00} \\
+			trp          & \texttt{02408} & \texttt{01}   & \texttt{00} \\
+			trp          & \texttt{02407} & \texttt{00}   & \texttt{00} \\
+			trp          & \texttt{02406} & \texttt{04}   & \texttt{00} \\
+			a{[}1{]}     & \texttt{02405} & \texttt{FF}   & \texttt{FF} \\
+			a{[}1{]}     & \texttt{02404} & \texttt{FF}   & \texttt{FF} \\
+			a{[}0{]}     & \texttt{02403} & \texttt{00}   & \texttt{7F} \\
+			a{[}0{]}     & \texttt{02402} & \texttt{7F}   & \texttt{00} \\
+			ii           & \texttt{02401} & \texttt{01}   & \texttt{00} \\
+			ii           & \texttt{02400} & \texttt{00}   & \texttt{01} \\ \bottomrule
+		\end{tabular}
+	\end{table}
+	
+	The MSP430 is a little endian RISC architecture.
+\end{homeworkProblem}
+
+
+
+\begin{homeworkProblem}
+		A)  the msp430 has both RAM and FLASH because both have separate functions. FLASH (non-volatile) memory is cheaper and retains it's state when power is lost, but has slower write times than RAM. Random access memory (RAM) has fast write times in addition to its fast read times, but it does not reatain information when the power is lost. Using just RAM would be expensive and would require a reprogramming step every time the chip is re-powered, and using only FLASH would cause poor performance.
+		\\ \\
+		B) In total, the MSP430f5529 has 10 KB of RAM, 2 of which is for the USB, but can be re-purposed provided the USB is not in use. There are 4 sectors of ram, each containing 2KB, the first of which starts at address: 0x002BFF
+		\\ \\
+		C) The MSP430 has 128 KB of FLASH memory. There are two types of FLASH memory, main memory and information memory. The information memory is divided into 4 sedments labeled A through D of 128 bytes each, and the main memory is divided into 255 segments of 512 bytes each. The address \texttt{0x00B04A} is in the 87th bank of main flash memory.
+		\\ \\
+		D) The code is stored at address \texttt{0x4400}
+		\\ \\
+		E) A 20 bit adress bus allows it to communicate at a true 1 Megabit range, instead of the normal 1 Mebibit range.
+		\\ \\
+		F)
+		\begin{table}[h]
+			\begin{tabular}{@{}lll@{}}
+				\toprule
+				Device         & I/O Ports \& Pins & Package Pins \\ \midrule
+				2 push buttons & P1.7, P2.1-2      & 28, 31       \\
+				LEDs 1-3       & P1.0, P8.1-2      & 21, 15, 16   \\
+				Touch Pad LEDs & P1.1-5            & 22-26        \\
+				Scroll Wheel   & P8.0              &              \\ \bottomrule
+			\end{tabular}
+		\end{table}
+\end{homeworkProblem}
+
+
+
+\begin{homeworkProblem}
+	A)
+	\texttt{
+		\lstinputlisting[language=C]{source1.c}
+	}
+	This program would take 80 bits of stack space to declare the variables, and would then be fairly quick in terms of operations, due to the fact that the loop is only run 6 times, in which there are 8 assembly operations per iteration. This is fairly quick.
+	\newpage
+	B)
+	\texttt{
+		\lstinputlisting[language=C]{source2.c}
+	}
+	This program would take 112 bits of stack space to store its variables, and it's main loop would also only run 6 times. However, because there is a call to pow() in the loop, there are 6 instances of the stack being extended, populated, and then discarded, in addition to the operations that take place inside the pow function. Because the MSP430 does not have a FPU, each floating point operation takes multiple assembly instructions, and is significantly slower than the previous example. Unrelated, but the main method also has the wrong prototype. 
+\end{homeworkProblem}
+
+
+
+\begin{homeworkProblem}
+Pin 1 is being used as output, and pin 3 is being used as input. If the value of P3IN is \texttt{0x66}, then P1OUT is \texttt{0x66 << 1}, or \texttt{0xCC}.
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+	A)
+		The 7 segment display is an output
+		\texttt {
+			\lstinputlisting[language=C]{sevenseg1.c}
+		}
+	\newpage
+	B)
+		\texttt {
+			\lstinputlisting[language=C]{sevenseg2.c}
+		}
+\end{homeworkProblem}
+
+\newpage
+
+\begin{homeworkProblem}
+	A)
+		\texttt {
+			\lstinputlisting[language=C]{setupP4.c}
+		}
+	B)
+		\texttt {
+			\lstinputlisting[language=C]{setupP3.c}
+		}
+	C)
+		\texttt {
+			\lstinputlisting[language=C]{inOut.c}
+		}
+	D)
+		\texttt {
+			\lstinputlisting[language=C]{p6d.c}
+		}
+\end{homeworkProblem}
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
