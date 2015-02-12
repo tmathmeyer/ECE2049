@@ -1,0 +1,193 @@
+\documentclass{article}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{extramarks}
+\usepackage{graphicx}
+\usepackage{lipsum}
+\usepackage{booktabs}
+\usepackage{inconsolata}
+\usepackage{listings}
+\usepackage{amssymb}
+
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in 
+\linespread{1.1}
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{}
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}}
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+\setlength\parindent{0pt}
+
+
+\newcounter{homeworkProblemCounter}
+
+\newcommand{\homeworkProblemName}{}
+
+\newcommand{\enterProblemHeader}[1]{
+	\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak
+	\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+}
+
+\newcommand{\exitProblemHeader}[1]{
+	\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+	\nobreak\extramarks{#1}{}\nobreak
+}
+
+\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]{
+	\stepcounter{homeworkProblemCounter}
+	\renewcommand{\homeworkProblemName}{#1}
+	\section*{\homeworkProblemName}
+	\enterProblemHeader{\homeworkProblemName}
+}{
+	\exitProblemHeader{\homeworkProblemName}
+}
+   
+
+\newcommand{\hmwkTitle}{Homework\ \#3}
+\newcommand{\hmwkDueDate}{Thursday,\ February\ 12,\ 2015}
+\newcommand{\hmwkClass}{ECE 2049}
+\newcommand{\hmwkAuthorName}{Ted Meyer}
+
+
+\title{
+\vspace{2in}
+\textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+\normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}\\
+\vspace{3in}
+}
+
+\author{\textbf{\hmwkAuthorName}}
+\date{}
+
+
+\begin{document}
+
+\maketitle
+
+
+
+\newpage
+
+
+
+\begin{homeworkProblem}
+	\subsection*{A)}
+	busywork.
+	\subsection*{B)}
+	busywork.
+	\subsection*{C)}
+	This sets up the XT1 and XT2 crystal clocks, which are multiplexed on Port 5, pins (4,5) and (2,3) respectively. It is necessary to do this in main() to enable both clocks.
+	\subsection*{D)}
+	Freq. XT1 = 32768 Hz. \\
+	Freq. XT2 = 4 MHz. \\
+	\subsection*{E)}
+	\texttt {
+		\lstinputlisting[language=C]{p1e.c}
+	}
+	
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+	\subsection*{A)}
+	UTC is a time standard based on GMT but is precisely defined by the IRCC to include such things as leap seconds. Most time zones are based on a UTC offset. EST is the same things as UTC - 5:00. "Zulu" time is a 24 hour time based on UTC.
+	\subsection*{B)}
+	There are 60*60*24*365=31,536,000 seconds in a normal year, and 31,622,400 seconds in a leap year. Considering that 1900 was NOT a leap year, this means that 3,099,621,045 seconds after UTC-0 is in fact
+	3,099,621,045 - (31,536,000 * 4) = 2,973,477,045 seconds after Jan 01, 1904. In every subsequent set of 4 years, there are a total of 126,230,400 seconds. 2,973,477,045 / 126,230,400 = 23 full sets of four years, and 2,973,477,045 \% 126,230,400 = 70,177,845 remaining seconds after 1996. Another two years is 31,536,000 + 31,622,400 = 63,158,400 seconds, which puts us at 1998 with 7019445 seconds left. Since there are 60*60*24 = 86400 seconds per day, this ammounts to 81 days, with a remaining 21045 seconds. the 81st Day in 1998 is March 22nd. 21045 seconds is 5 hours, 3045 seconds, or 5 hours, 50 minutes, and 45 seconds. The overall time/date is
+	March 22nd, 1998, 5:50:45 AM (UTC).
+	\subsection*{C)}
+	It can be demonstrated in a very simple manner by simply stating that the number of nanoseconds in a leap year is 1.3176e+15, while the number of representable integers in a 64 bit number is 1.8446744e+19. 
+	\subsection*{D)}
+	5132109 / (60*60*24) = 59 days and 34509 seconds.
+	34509 / (60*60) = 9 hours and 2109 seconds.
+	2109 / 60 = 35 minutes and 9 seconds.
+	This would be March 1st, 2015, 9:35:09 AM.
+	\subsection*{E)}
+	\texttt {
+		\lstinputlisting[language=C]{p2e.c}
+	}
+	\subsection*{F)}
+	\texttt {
+		\lstinputlisting[language=C]{p2f.c}
+	}
+\end{homeworkProblem}
+
+
+
+
+\begin{homeworkProblem}
+	\subsection*{A)}
+	(2620+1) * (2 / 1.04857MHz) = 0.00499916076 seconds.
+	\subsection*{B)}
+	after 11915 inturrupts, the clock will be .01 seconds slow.
+	\subsection*{C)}
+	\texttt {
+		\lstinputlisting[language=C]{p3c.c}
+	}
+	\subsection*{D)}
+	theoretically, it could measure 0.00003051757 seconds. This is not feasable of course, because at that rate, the inturrupt would be triggered again before the inturrupt function had finished executing the first time, and nothing would ever actually get done.
+	\subsection*{E)}
+	I would pick an SMCLK of 33, because 33 / 32768 is 0.00100708007, which is very close to a power of 10 while also being quite small.
+\end{homeworkProblem}
+
+
+
+
+\begin{homeworkProblem}
+	\subsection*{A)}
+	\texttt {
+		\lstinputlisting[language=C]{p4a.c}
+	}
+	\subsection*{B)}
+	No. The value of maximum is exact and no truncation occurs.
+	\subsection*{C)}
+	\texttt {
+		\lstinputlisting[language=C]{p4c.c}
+	}
+	\subsection*{D)}
+	52 / 0.0004 = 130000 \\
+	4MHz = 2200 \\
+	2200 * (1/3999950) = 0.00055000687 \\
+	0.00055000687*130000 = 71.5\\
+	Therefore, the timer will be super slow.
+	
+	
+	
+\end{homeworkProblem}
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
