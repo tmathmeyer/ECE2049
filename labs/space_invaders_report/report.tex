@@ -1,0 +1,145 @@
+\documentclass{article}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{extramarks}
+\usepackage{graphicx}
+\usepackage{inconsolata}
+\usepackage{listings}
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in 
+\linespread{1.1}
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{}
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}}
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+\setlength\parindent{0pt}
+
+\newcounter{homeworkProblemCounter}
+
+\newcommand{\homeworkProblemName}{}
+
+\newcommand{\enterProblemHeader}[1]{
+	\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak
+	\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+}
+
+\newcommand{\exitProblemHeader}[1]{
+	\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+	\nobreak\extramarks{#1}{}\nobreak
+}
+
+\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]{
+	\stepcounter{homeworkProblemCounter}
+	\renewcommand{\homeworkProblemName}{#1}
+	\section{\homeworkProblemName}
+	\enterProblemHeader{\homeworkProblemName}
+}{
+	\exitProblemHeader{\homeworkProblemName}
+}
+
+\newenvironment{UhomeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]{
+	\stepcounter{homeworkProblemCounter}
+	\renewcommand{\homeworkProblemName}{#1}
+	\section*{\homeworkProblemName}
+	\enterProblemHeader{\homeworkProblemName}
+}{
+	\exitProblemHeader{\homeworkProblemName}
+}
+
+\title{
+	\vspace{2in}
+	\textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+	\normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}\\
+	\vspace{3in}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newcommand{\hmwkTitle}{Space Invaders Lab Report}
+\newcommand{\hmwkDueDate}{Friday, Fedruary 6th}
+\newcommand{\hmwkClass}{ECE 2049}
+\newcommand{\hmwkAuthorName}{Ted Meyer}
+
+\author{\textbf{\hmwkAuthorName}}
+\date{}
+
+
+\begin{document}
+
+\maketitle
+
+
+
+\newpage
+
+
+ 
+\begin{UhomeworkProblem}[Introduction]
+	The goals of this lab were to give us experience in state machines, digital IO on an embedded system, and the graphics library for the msp430. In this lab I accomplished mainly a rewrite of the DOGS graphics library, as I was already familiar with both digital IO and with state machines especially. I also finished all of the extra parts of this lab, incuding the graphical icons and the sound track. 
+\end{UhomeworkProblem}
+
+\begin{UhomeworkProblem}[Discussion and Results]
+	Most of my time in this lab was spent working with the graphics library, specifically the DOGS102x64 code. Initially, I had used the provided functions such as GrStringDrawCentered, and GrClearDisplay, but found that without using inturrupts, they were slow in the critical IO sections where the users were meant to interact with the game. Specifically, drawing the aliens was taking so long that the user would have to hold the pad in order for it to register as a touch. I was very unsatisfied with this system, so I decided to rewrite this part. I found that the current implementation was a double-buffered system - one where the drawings were stored in a temporary buffer before being flushed to the screen. I first tried to disable this, though it caused flickering, and I decided to re-enable it later. I used a system of unioned characters and integers to calculate byte offsets and draw my own bitmaps into the temporary memory buffer.
+	As far as the state machine goes, I've had plendy of experience with this before so I didn't spend much time on it. I used a few tricks however, with sub-states that I thought might be worth talking about here. The main menu state and the winning / losing screens used a pattern where they would only execute the drawing step the first time they were entered into, in order to not waste time drawing the same text over and over. This was especially important on the main menu screen since I was drawing a reletively large bitmap (90x32) which stayed static, and two smaller (10x8) bitmaps which switched between aliens at a set rate. Due to the fact that the menu was also listening to the user pressing the X button, it was imperitive that the drawing be as fast as possible, so the large bitmap was only drawn once per menu screen.
+	The final part of the lab that I though I did in an interesting manner was the alien storage. Many other solutions I saw used an array of aliens which would be zero'd out in parts where the aliens had been killed, but I decided to go with a bitvector aproach, using only one byte for each row of aliens. This allowed me to manage alien shooting for any column and all rows simultaneously with only 9 bitwise operations, as can be seen in code appendix A.  
+\end{UhomeworkProblem}
+
+\begin{UhomeworkProblem}[Summary and Conclusion]
+	The main thing accomplished in this lab was again, the beginning of the re-write of the graphics library. I intend to make this an ongoing project throughout the rest of the labs, and there is certainly more to be done. I would like to make the code a bit cleaner, add some better documentation, and make some of the code more efficient (like regional clearing). Overall I would like to get it to a point where it could potentially be used by other people as it's current state could be accurately describe with a duct tape metaphor. 
+\end{UhomeworkProblem}
+
+\newpage
+
+\begin{UhomeworkProblem}[Code Appendix A]
+	\texttt {
+		\lstinputlisting[language=C]{shoot.c}
+	}
+\end{UhomeworkProblem}
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
