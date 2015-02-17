@@ -1,0 +1,160 @@
+\documentclass{article}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{extramarks}
+\usepackage{graphicx}
+\usepackage{lipsum}
+\usepackage{booktabs}
+\usepackage{inconsolata}
+\usepackage{listings}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in 
+\linespread{1.1}
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{}
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}}
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+\setlength\parindent{0pt}
+
+
+\newcounter{homeworkProblemCounter}
+
+\newcommand{\homeworkProblemName}{}
+
+\newcommand{\enterProblemHeader}[1]{
+	\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak
+	\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+}
+
+\newcommand{\exitProblemHeader}[1]{
+	\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+	\nobreak\extramarks{#1}{}\nobreak
+}
+
+\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]{
+	\stepcounter{homeworkProblemCounter}
+	\renewcommand{\homeworkProblemName}{#1}
+	\section*{\homeworkProblemName}
+	\enterProblemHeader{\homeworkProblemName}
+}{
+	\exitProblemHeader{\homeworkProblemName}
+}
+   
+
+\newcommand{\hmwkTitle}{Homework\ \#4}
+\newcommand{\hmwkDueDate}{Thursday,\ February\ 19,\ 2015}
+\newcommand{\hmwkClass}{ECE 2049}
+\newcommand{\hmwkAuthorName}{Ted Meyer}
+
+
+\title{
+\vspace{2in}
+\textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+\normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}\\
+\vspace{3in}
+}
+
+\author{\textbf{\hmwkAuthorName}}
+\date{}
+
+
+\begin{document}
+
+\maketitle
+
+
+
+\newpage
+
+
+
+\begin{homeworkProblem}
+	\subsection*{A)}
+		\subsubsection*{i) Full-Scale Range (FSR)}
+			A maximum range of analog values that can be represented by an ADC. The FSR for the ADC12 on the msp430 can be configured as 1.5V.
+		\subsubsection*{ii) Resolution}
+			The smalest change in value that can be measured by an ADC. The ADC12  (a 12 bit ADC) has $\frac{FSR}{4096}$ volts of resolution. The previous example would have a resolution of 0.000366V.
+		\subsubsection*{iii) Dynamic Range}
+			The ratio of the smallest and largest measurable values; the ADC12 would have a dynamic range of
+			72.24dB
+	\subsection*{B)}
+		Channels 8, 9, and 11 are connected to different reference voltages on the chip, which channel 10 is connected to the chip's internal thermister.
+	\subsection*{C)}
+		ADCMEM7   ???? maybe?
+	\subsection*{D)}
+		nope
+	\subsection*{E)}
+		\subsubsection*{i)}
+		\subsubsection*{ii)}
+		\subsubsection*{iii)}
+		\subsubsection*{iv)}
+		\subsubsection*{v)}
+			
+			
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+	\subsection*{A)}
+		Every 0.25kPa will change the analog output by 0.3V. \\
+		The output of the sensor is anywhere from 0 to 3 volts. \\
+		$0.3mV = \tfrac{3v}{2^{bits}}$ \\
+		$2^{bits} = \tfrac{3V}{0.3mV}$ \\
+		$2^{bits} = 10000$ \\
+		$bits = 14 bits$
+	\subsection*{B)}
+		$20 * log10(2^{14})  = 84.29 dB$
+	\subsection*{C)}
+		$3V = 3000mV$ \\ \\
+		$\frac{3000mV}{1.2\frac{mV}{kPa}} = 2500kPa$ \\ \\
+		$2500.20 kPa$
+	\subsection*{D)}
+		$20 * log10(\frac{2500.20}{0.20})  = 81.94 dB$
+	\subsection*{E)}
+		\texttt {
+			\lstinputlisting[language=C]{p2e.c}
+		}
+	\subsection*{F)}
+		0x01EF = 495 \\
+		495 / 4 = 123.75 kPa \\
+		123.75 kPa = 1.22 ATM
+\end{homeworkProblem}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
