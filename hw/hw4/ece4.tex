@@ -83,24 +83,25 @@
 \begin{homeworkProblem}
 	\subsection*{A)}
 		\subsubsection*{i) Full-Scale Range (FSR)}
-			A maximum range of analog values that can be represented by an ADC. The FSR for the ADC12 on the msp430 can be configured as 1.5V.
+			A maximum range of analog values that can be represented by an ADC\@. The FSR for the ADC12 on the msp430 can be configured as 1.5V.
 		\subsubsection*{ii) Resolution}
-			The smalest change in value that can be measured by an ADC. The ADC12  (a 12 bit ADC) has $\frac{FSR}{4096}$ volts of resolution. The previous example would have a resolution of 0.000366V.
+			The smalest change in value that can be measured by an ADC\@. The ADC12  (a 12 bit ADC) has $\frac{FSR}{4096}$ volts of resolution. The previous example would have a resolution of 0.000366V.
 		\subsubsection*{iii) Dynamic Range}
 			The ratio of the smallest and largest measurable values; the ADC12 would have a dynamic range of
 			72.24dB
 	\subsection*{B)}
 		Channels 8, 9, and 11 are connected to different reference voltages on the chip, which channel 10 is connected to the chip's internal thermister.
 	\subsection*{C)}
-		ADCMEM7   ???? maybe?
+		ADCMEM7??????????????????????
 	\subsection*{D)}
-		nope
+		0 and 5. \\
+		2 and 5.
 	\subsection*{E)}
-		\subsubsection*{i)}
-		\subsubsection*{ii)}
-		\subsubsection*{iii)}
-		\subsubsection*{iv)}
-		\subsubsection*{v)}
+		\subsubsection*{i) 1.5V}
+		\subsubsection*{ii) 0.000366}
+		\subsubsection*{iii) 72.24dB}
+		\subsubsection*{iv) P6.6}
+		\subsubsection*{v) ADC12MEM4 register}
 			
 			
 \end{homeworkProblem}
@@ -123,14 +124,36 @@
 	\subsection*{D)}
 		$20 * log10(\frac{2500.20}{0.20})  = 81.94 dB$
 	\subsection*{E)}
-		\texttt {
-			\lstinputlisting[language=C]{p2e.c}
-		}
+		\texttt {\lstinputlisting[language=C]{p2e.c}}
 	\subsection*{F)}
 		0x01EF = 495 \\
 		495 / 4 = 123.75 kPa \\
 		123.75 kPa = 1.22 ATM
 \end{homeworkProblem}
+
+
+
+\begin{homeworkProblem}
+texttt {lstinputlisting[language=C]{p3.c}}
+\end{homeworkProblem}
+
+
+
+\begin{homeworkProblem}
+	\subsection*{A)}
+		The wheel is connected to difital P8.0, and Analog A5.
+	\subsection*{B)}
+		The potentiometer works as part of a wheatstone bridge circuit. When the resistance from the potentiometer increases, more current flows through the ADC in the center of the bridge, and when it is decreased, the current tends to flow the other way. This can be measured with the ADC.
+		It must have a logic value of 1. 
+	\subsection*{C)}
+		texttt {lstinputlisting[language=C]{p4c.c}}
+\end{homeworkProblem}
+
+
+
+
+
+
 
 \end{document}
 

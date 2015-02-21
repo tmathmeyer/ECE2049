@@ -1,0 +1,149 @@
+\documentclass{article}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{extramarks}
+\usepackage{graphicx}
+\usepackage{inconsolata}
+\usepackage{listings}
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in 
+\linespread{1.1}
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{}
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}}
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+\setlength\parindent{0pt}
+
+\newcounter{homeworkProblemCounter}
+
+\newcommand{\homeworkProblemName}{}
+
+\newcommand{\enterProblemHeader}[1]{
+	\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak
+	\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+}
+
+\newcommand{\exitProblemHeader}[1]{
+	\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+	\nobreak\extramarks{#1}{}\nobreak
+}
+
+\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]{
+	\stepcounter{homeworkProblemCounter}
+	\renewcommand{\homeworkProblemName}{#1}
+	\section{\homeworkProblemName}
+	\enterProblemHeader{\homeworkProblemName}
+}{
+	\exitProblemHeader{\homeworkProblemName}
+}
+
+\newenvironment{UhomeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]{
+	\stepcounter{homeworkProblemCounter}
+	\renewcommand{\homeworkProblemName}{#1}
+	\section*{\homeworkProblemName}
+	\enterProblemHeader{\homeworkProblemName}
+}{
+	\exitProblemHeader{\homeworkProblemName}
+}
+
+\title{
+	\vspace{2in}
+	\textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+	\normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}\\
+	\vspace{3in}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newcommand{\hmwkTitle}{MSP430 Hero Lab Report}
+\newcommand{\hmwkDueDate}{Monday, February 23rd}
+\newcommand{\hmwkClass}{ECE 2049}
+\newcommand{\hmwkAuthorName}{Ted Meyer}
+
+\author{\textbf{\hmwkAuthorName}}
+\date{}
+
+
+\begin{document}
+
+\maketitle
+
+
+
+\newpage
+
+
+ 
+\begin{UhomeworkProblem}[Introduction]
+	The goal of this assignment were to gain experience using inturrupts and understand the differences between them and simple polling techniques, as well as gaining more experience with a miriad of different peripheral devices, including a small amount of timer work to play music on the buzzer.
+\end{UhomeworkProblem}
+
+\begin{UhomeworkProblem}[Discussion and Results]
+	The main goal of this lab was to understand the importance of inturrupts. Microprocessors generally only have one frame of execution, which is where the previous labs were constrained to. Because of this, doing multiple things at once could lead to backups and race conditions. There were examples of this in the space invaders game; because everything was draw to the screen inside this main operation, button presses could only be read while the screen was no updating. Inturrupts are designed as a solution to this, and implemented at the processor level. They take electrical signals from external devices and use them to halt code execution (they cache the current register values including the instruction pointer) and jump into another routine specified by the inturrupt table. For this lab, both inturrupts and polling were used; because each note had to play for a spicific set amount of time, processor clock speed hiccups would distort the music, and so note playing was triggered by an inturrupt. The capacitive touch pad buttons however do not have the ability to fire an inturrupt, so they were polled instead. Another major topic was how to play notes of a specific frequency. This was in fact quite simple; since the ACLK timer used for the buzzer operates at a frequency of 32768 Hz, in order to play a note at 400 Hz, we simply divide 32768 by 400 to get the number of cycles it should take to oscilate the buzzer. The source used is described in Code Appendix A. For the duration, a simple method of storing the duration as part of the note struct, which each inturrupt would slowly count up to, was used. When the counter and the duration were equal, the pointer to the note struct would be incremented and the counter reset. For game logic, I used a pretty simple control flow. The song I chose was Turkish March by Motzart, and I had programmed 44 notes. To win, a user must hit 30 or more correctly. This was very hard, because it was a fast song. See Code Appendix B for the timer set up function.
+\end{UhomeworkProblem}
+
+\begin{UhomeworkProblem}[Summary and Conclusion]
+	A few things were accomplished in this lab, only some of which were intended. Most importantly of course, inturrupts were used to create a correctly timed series of notes. Though this probably could have been accomplished with precision instruction manipulation at the assembly/bytecode level, doing it with inturrupts is a far more robust and understandable way. It was also an edifying experience in terms of musical knowledge: The fact that two notes one octave apart have half/double frequency was new to me, and this was also the first time in years that I've had to read sheet music.
+\end{UhomeworkProblem}
+
+\newpage
+
+\begin{UhomeworkProblem}[Code Appendix A]
+	\texttt {
+		\lstinputlisting[language=C]{appendix_a.c}
+	}
+\end{UhomeworkProblem}
+
+\begin{UhomeworkProblem}[Code Appendix B]
+	\texttt {
+		\lstinputlisting[language=C]{timer_setup.c}
+	}
+\end{UhomeworkProblem}
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
